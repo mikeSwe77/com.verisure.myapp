@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/mikeSwe77/com.verisure.myapp/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/mikeSwe77/com.verisure.myapp/actions/workflows/ci.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="Licence: GPL-3.0" src="https://img.shields.io/badge/licence-GPL--3.0-blue"></a>
   <img alt="Homey Pro" src="https://img.shields.io/badge/Homey%20Pro-SDK%20v3-00b5f0">
   <img alt="Languages" src="https://img.shields.io/badge/languages-English%20%7C%20Svenska-lightgrey">
@@ -440,13 +441,14 @@ your Homey, the tests, the project layout and the read-only live test against yo
 ## 📜 Credits and licence
 
 - API client ported from [`python-verisure`](https://github.com/persandstrom/python-verisure) by
-  [@persandstrom](https://github.com/persandstrom) and contributors; session handling follows Home
-  Assistant's [Verisure integration](https://github.com/home-assistant/core/tree/dev/homeassistant/components/verisure).
+  Per Sandström ([@persandstrom](https://github.com/persandstrom)) and contributors (MIT); session
+  handling follows Home Assistant's [Verisure integration](https://github.com/home-assistant/core/tree/dev/homeassistant/components/verisure).
 - Event-log detection approach from the [openHAB Verisure binding](https://github.com/openhab/openhab-addons/tree/main/bundles/org.openhab.binding.verisure).
 - Device icons: Homey's built-in icons and, for the alarm, Athom's
-  [homey-vectors-public](https://github.com/athombv/homey-vectors-public).
+  [homey-vectors-public](https://github.com/athombv/homey-vectors-public) (both GPL-3.0).
 
-Licensed under the [GNU General Public License v3.0](LICENSE).
+Licensed under the [GNU General Public License v3.0](LICENSE). Third-party licences are listed in
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 <sub>Verisure is a trademark of Verisure Group. This project is not affiliated with, endorsed by or
 supported by Verisure.</sub>

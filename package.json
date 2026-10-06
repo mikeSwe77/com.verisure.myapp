@@ -2,6 +2,22 @@
   "name": "com.verisure.myapp",
   "version": "0.1.0",
   "description": "Verisure alarm, sensors, smart plugs, locks and cameras for Homey",
+  "author": "Michael Edholm",
+  "homepage": "https://github.com/mikeSwe77/com.verisure.myapp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeSwe77/com.verisure.myapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mikeSwe77/com.verisure.myapp/issues"
+  },
+  "keywords": [
+    "homey",
+    "homey-app",
+    "verisure",
+    "alarm",
+    "smart-home"
+  ],
   "main": "app.js",
   "scripts": {
     "lint": "eslint --ext .js --ignore-path .gitignore .",
@@ -18,5 +34,6 @@
     "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
     "eslint": "^7.32.0",
     "eslint-config-athom": "^3.1.5"
-  }
+  },
+  "funding": "https://buymeacoffee.com/mikeswe"
 }

@@ -1,0 +1,56 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! **Never post** your Verisure password, alarm or lock codes,
+        session cookies or installation ID (giid) — remove them from logs before pasting.
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device type
+      options:
+        - Alarm
+        - Door/window sensor
+        - Smoke detector
+        - Motion detector
+        - Water detector
+        - Climate sensor
+        - Smart plug
+        - Smart lock
+        - Camera
+        - Sign-in / pairing / repair
+        - App settings (sign out)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. …\n2. …"
+  - type: input
+    id: versions
+    attributes:
+      label: App version and Homey version
+      placeholder: "App 0.1.0, Homey Pro (Early 2023) 12.x"
+  - type: input
+    id: country
+    attributes:
+      label: Country of your Verisure installation
+      description: Verisure's API and two-factor sign-in differ between countries.
+      placeholder: Sweden
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: From `homey app run`, or Homey Developer Tools → Apps → Verisure. Remove anything secret.
+      render: text

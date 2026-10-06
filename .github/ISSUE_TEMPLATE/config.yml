@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Homey Community Forum
+    url: https://community.homey.app/
+    about: General Homey questions and discussion.

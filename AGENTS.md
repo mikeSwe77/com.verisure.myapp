@@ -134,7 +134,7 @@ like `{ deviceLabel, violation: "DOOR_WINDOW_OPEN" }`. It does NOT arm (verified
 
 Use Homey's own built-in device icons wherever one fits — they match the icon picker users
 see in Homey (Security section etc.) and meet the store's line-art guidelines. They ship with
-the Homey CLI in `homey-lib/assets/device/icons/` (ISC licence); copy the SVG to
+the Homey CLI in `homey-lib/assets/device/icons/` (GPL-3.0, like this app); copy the SVG to
 `drivers/<id>/assets/icon.svg` (a manifest cannot reference them by name). In use:
 
 | Driver / type | Icon | Source |

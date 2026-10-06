@@ -1,0 +1,36 @@
+name: Device test report
+description: Tell us how the app works with your Verisure hardware (smart locks and cameras especially!)
+labels: [device-report]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Smart locks, cameras and some detectors haven't been tested on real hardware yet. Reports —
+        good or bad — help a lot. **Don't** post serial numbers, codes or your installation ID.
+  - type: input
+    id: hardware
+    attributes:
+      label: Verisure hardware
+      placeholder: "Yale Doorman V2N, SmartCam, …"
+    validations:
+      required: true
+  - type: dropdown
+    id: result
+    attributes:
+      label: Does it work?
+      options:
+        - Works fully
+        - Partly works
+        - Doesn't work
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What works, what doesn't, which flow cards you tried.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (optional)
+      render: text
