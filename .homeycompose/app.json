@@ -54,5 +54,10 @@
       "method": "POST",
       "path": "/accounts/sign-out"
     }
+  },
+  "source": "https://github.com/mikeSwe77/com.verisure.myapp",
+  "homepage": "https://github.com/mikeSwe77/com.verisure.myapp#readme",
+  "bugs": {
+    "url": "https://github.com/mikeSwe77/com.verisure.myapp/issues"
   }
 }
