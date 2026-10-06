@@ -100,6 +100,19 @@ homebridge). Like openHAB's binding, the app reads them from the event log:
 - The alarm device has installation-wide fire/water/intrusion/tamper/low-battery triggers,
   because events can be attributed to the siren, gateway or keypad instead of a Homey device.
 
+## Camera motion detectors (CAMERAPIR) — no customer pictures
+
+Investigated 2026-10-06, conclusion: not possible, don't build it.
+- Capabilities are only SUPPORTS_CAPTURE_OPERATOR_IMAGE (Verisure's alarm centre requests images) and
+  CAN_TAKE_IMAGES_ON_LINKED_ALARM_EVENT (automatic images on alarm). No customer-capture capability.
+- `cameras(allCameras: true)` returns [] for an installation with three CAMERAPIRs; the media search
+  (ContentProviderMediaSearch) returns no series; GraphQL introspection is disabled. Field suggestions
+  on Installation only reveal `cameras`, `cameraTypes`, `cameraStream`, `cameraContentProvider`.
+- Probing many queries in a short time hit AUT_00021 ("Request limit has been reached") while the app
+  was also polling — keep live probing to a minimum and never loop over guesses.
+Possible future work: show alarm-event images (if the media search returns any after a real alarm)
+on the motion detector device.
+
 ## Arm readiness ("can the alarm be armed?")
 
 Verisure's arm dry run (vsure 2.10 `arm_state_dry_run`, captured from My Verisure's "Arm

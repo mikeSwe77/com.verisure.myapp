@@ -386,6 +386,9 @@ in *My Verisure*.
 - **Don't test smoke or water detectors for real without contacting Verisure first** — it may start a real
   alarm response.
 - **No battery percentage** — Verisure does not offer battery levels to normal accounts, only *low battery*.
+- **Camera motion detectors can't take a picture on request.** Verisure only lets its alarm centre
+  request pictures from them, and they take pictures automatically when an alarm goes off. *Take a
+  picture* works with SmartCam cameras only.
 - **Not in Verisure's API:** playing sounds on sirens or VoiceBoxes, a live smoke-detector state,
   Arlo/Guardian camera streams.
 - **Unofficial API.** Verisure can change it at any time; the app follows `python-verisure`, which tracks
