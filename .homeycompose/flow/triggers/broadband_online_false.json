@@ -1,0 +1,4 @@
+{
+  "title": { "en": "Broadband went offline", "sv": "Bredbandet gick ner" },
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=alarm" } ]
+}

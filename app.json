@@ -1,0 +1,1325 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.verisure.myapp",
+  "version": "0.1.0",
+  "compatibility": ">=12.11.0",
+  "sdk": 3,
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Verisure",
+    "sv": "Verisure"
+  },
+  "description": {
+    "en": "Control your Verisure alarm and see its sensors in Homey",
+    "sv": "Styr ditt Verisure-larm och se dess sensorer i Homey"
+  },
+  "brandColor": "#E2001A",
+  "category": [
+    "security"
+  ],
+  "tags": {
+    "en": [
+      "verisure",
+      "alarm",
+      "security",
+      "smart plug",
+      "camera"
+    ],
+    "sv": [
+      "verisure",
+      "larm",
+      "säkerhet",
+      "smart plugg",
+      "kamera"
+    ]
+  },
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Michael Edholm",
+    "email": "michael_edholm@hotmail.com"
+  },
+  "support": "https://community.homey.app/",
+  "api": {
+    "getAccounts": {
+      "method": "GET",
+      "path": "/accounts"
+    },
+    "signOut": {
+      "method": "POST",
+      "path": "/accounts/sign-out"
+    }
+  },
+  "flow": {
+    "triggers": [
+      {
+        "title": {
+          "en": "Alarm state was changed",
+          "sv": "Larmläget ändrades"
+        },
+        "hint": {
+          "en": "Includes who changed it and how (app, keypad, tag, Homey…).",
+          "sv": "Innehåller vem som ändrade det och hur (app, knappsats, tagg, Homey…)."
+        },
+        "tokens": [
+          {
+            "name": "state",
+            "type": "string",
+            "title": {
+              "en": "State",
+              "sv": "Läge"
+            },
+            "example": "armed"
+          },
+          {
+            "name": "user",
+            "type": "string",
+            "title": {
+              "en": "Changed by",
+              "sv": "Ändrat av"
+            },
+            "example": "Anna"
+          },
+          {
+            "name": "via",
+            "type": "string",
+            "title": {
+              "en": "Changed via",
+              "sv": "Ändrat via"
+            },
+            "example": "CODE"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "alarm_changed_by"
+      },
+      {
+        "title": {
+          "en": "Arming or disarming failed",
+          "sv": "På- eller avlarmning misslyckades"
+        },
+        "hint": {
+          "en": "Runs when Homey could not change the alarm state, e.g. a wrong code or an open window.",
+          "sv": "Körs när Homey inte kunde ändra larmläget, t.ex. fel kod eller ett öppet fönster."
+        },
+        "tokens": [
+          {
+            "name": "reason",
+            "type": "string",
+            "title": {
+              "en": "Reason",
+              "sv": "Orsak"
+            },
+            "example": {
+              "en": "Verisure did not confirm the change in time."
+            }
+          },
+          {
+            "name": "target",
+            "type": "string",
+            "title": {
+              "en": "Requested state",
+              "sv": "Begärt läge"
+            },
+            "example": "armed"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "arm_failed"
+      },
+      {
+        "title": {
+          "en": "A device reports low battery",
+          "sv": "En enhet rapporterar låg batterinivå"
+        },
+        "hint": {
+          "en": "Any device in the installation, including ones not added to Homey such as the keypad.",
+          "sv": "Alla enheter i anläggningen, även sådana som inte lagts till i Homey, t.ex. knappsatsen."
+        },
+        "tokens": [
+          {
+            "name": "area",
+            "type": "string",
+            "title": {
+              "en": "Room",
+              "sv": "Rum"
+            },
+            "example": {
+              "en": "Hall",
+              "sv": "Hall"
+            }
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "title": {
+              "en": "Device serial",
+              "sv": "Enhetens serienummer"
+            },
+            "example": "1AB2 CD34"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "battery_low"
+      },
+      {
+        "title": {
+          "en": "Broadband went offline",
+          "sv": "Bredbandet gick ner"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "broadband_online_false"
+      },
+      {
+        "title": {
+          "en": "Broadband came online",
+          "sv": "Bredbandet kom tillbaka"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "broadband_online_true"
+      },
+      {
+        "title": {
+          "en": "Fire alarm",
+          "sv": "Brandlarm"
+        },
+        "hint": {
+          "en": "A smoke detector (or the siren) reported fire anywhere in the installation.",
+          "sv": "En brandvarnare (eller sirenen) rapporterade brand någonstans i anläggningen."
+        },
+        "tokens": [
+          {
+            "name": "area",
+            "type": "string",
+            "title": {
+              "en": "Room",
+              "sv": "Rum"
+            },
+            "example": {
+              "en": "Kitchen",
+              "sv": "Kök"
+            }
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "title": {
+              "en": "Device serial",
+              "sv": "Enhetens serienummer"
+            },
+            "example": "1AB2 CD34"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "fire_detected"
+      },
+      {
+        "title": {
+          "en": "Intrusion alarm",
+          "sv": "Inbrottslarm"
+        },
+        "hint": {
+          "en": "A sensor reported an intrusion while the alarm was armed.",
+          "sv": "En sensor rapporterade intrång när larmet var på."
+        },
+        "tokens": [
+          {
+            "name": "area",
+            "type": "string",
+            "title": {
+              "en": "Room",
+              "sv": "Rum"
+            },
+            "example": {
+              "en": "Kitchen",
+              "sv": "Kök"
+            }
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "title": {
+              "en": "Device serial",
+              "sv": "Enhetens serienummer"
+            },
+            "example": "1AB2 CD34"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "intrusion_detected"
+      },
+      {
+        "title": {
+          "en": "New picture",
+          "sv": "Ny bild"
+        },
+        "tokens": [
+          {
+            "name": "image",
+            "type": "image",
+            "title": {
+              "en": "Picture",
+              "sv": "Bild"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=camera"
+          }
+        ],
+        "id": "new_image"
+      },
+      {
+        "title": {
+          "en": "Tamper alarm",
+          "sv": "Sabotagelarm"
+        },
+        "hint": {
+          "en": "A device reported tampering (cover opened or removed) anywhere in the installation.",
+          "sv": "En enhet rapporterade sabotage (lock öppnat eller borttagen) någonstans i anläggningen."
+        },
+        "tokens": [
+          {
+            "name": "area",
+            "type": "string",
+            "title": {
+              "en": "Room",
+              "sv": "Rum"
+            },
+            "example": {
+              "en": "Hall",
+              "sv": "Hall"
+            }
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "title": {
+              "en": "Device serial",
+              "sv": "Enhetens serienummer"
+            },
+            "example": "1AB2 CD34"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "tamper_detected"
+      },
+      {
+        "title": {
+          "en": "Water leak",
+          "sv": "Vattenläcka"
+        },
+        "hint": {
+          "en": "A water detector reported a leak anywhere in the installation.",
+          "sv": "Ett vattenlarm rapporterade läckage någonstans i anläggningen."
+        },
+        "tokens": [
+          {
+            "name": "area",
+            "type": "string",
+            "title": {
+              "en": "Room",
+              "sv": "Rum"
+            },
+            "example": {
+              "en": "Kitchen",
+              "sv": "Kök"
+            }
+          },
+          {
+            "name": "device",
+            "type": "string",
+            "title": {
+              "en": "Device serial",
+              "sv": "Enhetens serienummer"
+            },
+            "example": "1AB2 CD34"
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "water_detected"
+      }
+    ],
+    "conditions": [
+      {
+        "title": {
+          "en": "Alarm !{{can|cannot}} be armed without force",
+          "sv": "Larmet !{{kan|kan inte}} larmas på utan tvång"
+        },
+        "hint": {
+          "en": "Asks Verisure whether arming would go through, without arming. False when a door or window is open or a device reports a fault.",
+          "sv": "Frågar Verisure om pålarmning skulle gå igenom, utan att larma. Falskt när en dörr eller ett fönster är öppet eller en enhet rapporterar fel."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "arm_ready"
+      },
+      {
+        "title": {
+          "en": "Broadband !{{is|is not}} online",
+          "sv": "Bredbandet !{{är|är inte}} online"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "broadband_online"
+      }
+    ],
+    "actions": [
+      {
+        "title": {
+          "en": "Arm with options",
+          "sv": "Larma med val"
+        },
+        "titleFormatted": {
+          "en": "Arm [[mode]], force arm: [[force]]",
+          "sv": "Larma [[mode]], tvångslarma: [[force]]"
+        },
+        "hint": {
+          "en": "Force arming arms even when a door or window is open or a sensor reports a fault.",
+          "sv": "Tvångslarmning larmar även om en dörr eller ett fönster är öppet eller en sensor rapporterar fel."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Mode",
+              "sv": "Läge"
+            },
+            "values": [
+              {
+                "id": "away",
+                "label": {
+                  "en": "away (fully)",
+                  "sv": "borta (helt)"
+                }
+              },
+              {
+                "id": "home",
+                "label": {
+                  "en": "home (perimeter)",
+                  "sv": "hemma (skal)"
+                }
+              }
+            ]
+          },
+          {
+            "type": "dropdown",
+            "name": "force",
+            "title": {
+              "en": "Force arm",
+              "sv": "Tvångslarma"
+            },
+            "values": [
+              {
+                "id": "no",
+                "label": {
+                  "en": "no",
+                  "sv": "nej"
+                }
+              },
+              {
+                "id": "yes",
+                "label": {
+                  "en": "yes",
+                  "sv": "ja"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "arm_with_options"
+      },
+      {
+        "title": {
+          "en": "Take a picture",
+          "sv": "Ta en bild"
+        },
+        "hint": {
+          "en": "Asks the camera for a new picture. It takes a few seconds; the 'New picture' trigger runs when it arrives.",
+          "sv": "Ber kameran ta en ny bild. Det tar några sekunder; utlösaren 'Ny bild' körs när den kommit."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=camera"
+          }
+        ],
+        "id": "capture_image"
+      },
+      {
+        "title": {
+          "en": "Check if the alarm can be armed",
+          "sv": "Kontrollera om larmet kan larmas på"
+        },
+        "hint": {
+          "en": "Asks Verisure whether arming would go through, without arming. Returns which devices are in the way.",
+          "sv": "Frågar Verisure om pålarmning skulle gå igenom, utan att larma. Returnerar vilka enheter som är i vägen."
+        },
+        "tokens": [
+          {
+            "name": "ready",
+            "type": "boolean",
+            "title": {
+              "en": "Can be armed",
+              "sv": "Kan larmas"
+            }
+          },
+          {
+            "name": "blockers",
+            "type": "string",
+            "title": {
+              "en": "Blocking devices",
+              "sv": "Hindrande enheter"
+            },
+            "example": {
+              "en": "Entré (open)",
+              "sv": "Entré (öppen)"
+            }
+          }
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "check_arm_readiness"
+      },
+      {
+        "title": {
+          "en": "Update now",
+          "sv": "Uppdatera nu"
+        },
+        "hint": {
+          "en": "Fetches the latest state of every device in this installation. Each update counts towards Verisure's request limit.",
+          "sv": "Hämtar senaste läget för alla enheter i anläggningen. Varje uppdatering räknas mot Verisures gräns för förfrågningar."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          }
+        ],
+        "id": "refresh_now"
+      },
+      {
+        "title": {
+          "en": "Set auto-lock",
+          "sv": "Ställ in autolås"
+        },
+        "titleFormatted": {
+          "en": "Turn auto-lock [[enabled]]",
+          "sv": "Slå [[enabled]] autolås"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=smart_lock"
+          },
+          {
+            "type": "dropdown",
+            "name": "enabled",
+            "title": {
+              "en": "Auto-lock",
+              "sv": "Autolås"
+            },
+            "values": [
+              {
+                "id": "on",
+                "label": {
+                  "en": "on",
+                  "sv": "på"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "off",
+                  "sv": "av"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "set_autolock"
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/alarm/assets/images/small.png",
+        "large": "/drivers/alarm/assets/images/large.png"
+      },
+      "icon": "/drivers/alarm/assets/icon.svg",
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "name": {
+        "en": "Alarm",
+        "sv": "Larm"
+      },
+      "class": "homealarm",
+      "capabilities": [
+        "homealarm_state",
+        "verisure_changed_by",
+        "verisure_arm_ready",
+        "verisure_arm_blockers",
+        "broadband_online"
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Arming",
+            "sv": "Larma"
+          },
+          "children": [
+            {
+              "id": "code",
+              "type": "password",
+              "label": {
+                "en": "Alarm code",
+                "sv": "Larmkod"
+              },
+              "hint": {
+                "en": "Your personal Verisure code, used to arm and disarm from Homey. Verisure logs every change under the user this code belongs to. Repeated wrong codes temporarily lock the account.",
+                "sv": "Din personliga Verisure-kod som används för att larma på och av från Homey. Verisure loggar varje ändring på den användare koden tillhör. Upprepade felaktiga koder spärrar kontot tillfälligt."
+              },
+              "value": ""
+            },
+            {
+              "id": "force_arm",
+              "type": "checkbox",
+              "label": {
+                "en": "Force arm",
+                "sv": "Tvångslarma"
+              },
+              "hint": {
+                "en": "Arm even if a door or window is open or a sensor reports a fault. Without this, arming fails in that situation.",
+                "sv": "Larma även om en dörr eller ett fönster är öppet eller en sensor rapporterar fel. Utan detta misslyckas pålarmningen i det läget."
+              },
+              "value": false
+            },
+            {
+              "id": "arm_check",
+              "type": "checkbox",
+              "label": {
+                "en": "Check if the alarm can be armed",
+                "sv": "Kontrollera om larmet kan larmas på"
+              },
+              "hint": {
+                "en": "Shows 'Ready to arm' and what is blocking it. Checks after door/window activity and every 30 minutes while disarmed (about 3 requests per check).",
+                "sv": "Visar 'Redo att larma' och vad som hindrar. Kontrollerar efter dörr-/fönsteraktivitet och var 30:e minut när larmet är av (cirka 3 förfrågningar per kontroll)."
+              },
+              "value": true
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Updates",
+            "sv": "Uppdateringar"
+          },
+          "children": [
+            {
+              "id": "poll_interval",
+              "type": "number",
+              "label": {
+                "en": "Update interval",
+                "sv": "Uppdateringsintervall"
+              },
+              "units": {
+                "en": "seconds",
+                "sv": "sekunder"
+              },
+              "hint": {
+                "en": "How often all devices of this installation are refreshed (one request per update). Verisure blocks accounts that poll too often; 60 s is what Home Assistant uses.",
+                "sv": "Hur ofta alla enheter i anläggningen uppdateras (en förfrågan per uppdatering). Verisure spärrar konton som frågar för ofta; 60 s är vad Home Assistant använder."
+              },
+              "value": 60,
+              "min": 30,
+              "max": 3600
+            }
+          ]
+        }
+      ],
+      "id": "alarm"
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/camera/assets/images/small.png",
+        "large": "/drivers/camera/assets/images/large.png"
+      },
+      "icon": "/drivers/camera/assets/icon.svg",
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "name": {
+        "en": "Camera",
+        "sv": "Kamera"
+      },
+      "class": "camera",
+      "capabilities": [
+        "button.capture"
+      ],
+      "capabilitiesOptions": {
+        "button.capture": {
+          "title": {
+            "en": "Take picture",
+            "sv": "Ta bild"
+          }
+        }
+      },
+      "settings": [
+        {
+          "id": "image_refresh",
+          "type": "number",
+          "label": {
+            "en": "Check for new pictures every",
+            "sv": "Leta efter nya bilder var"
+          },
+          "units": {
+            "en": "minutes",
+            "sv": "minut"
+          },
+          "hint": {
+            "en": "How often to look for pictures taken by Verisure itself (e.g. on an alarm). Each check is one extra request. 0 = only after 'Take picture'.",
+            "sv": "Hur ofta appen letar efter bilder som Verisure själv tagit (t.ex. vid larm). Varje koll är en extra förfrågan. 0 = bara efter 'Ta bild'."
+          },
+          "value": 5,
+          "min": 0,
+          "max": 1440
+        }
+      ],
+      "id": "camera"
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/climate/assets/images/small.png",
+        "large": "/drivers/climate/assets/images/large.png"
+      },
+      "icon": "/drivers/climate/assets/icon.svg",
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "name": {
+        "en": "Climate sensor",
+        "sv": "Klimatsensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_temperature"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature": {
+          "decimals": 1
+        }
+      },
+      "id": "climate"
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/door_window/assets/images/small.png",
+        "large": "/drivers/door_window/assets/images/large.png"
+      },
+      "icon": "/drivers/door_window/assets/icon.svg",
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "name": {
+        "en": "Door/window sensor",
+        "sv": "Dörr-/fönstersensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_contact",
+        "alarm_tamper",
+        "alarm_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
+      "id": "door_window"
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/motion_detector/assets/images/small.png",
+        "large": "/drivers/motion_detector/assets/images/large.png"
+      },
+      "icon": "/drivers/motion_detector/assets/icon.svg",
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "name": {
+        "en": "Motion detector",
+        "sv": "Rörelsedetektor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_motion",
+        "alarm_tamper",
+        "alarm_battery"
+      ],
+      "settings": [
+        {
+          "id": "motion_reset",
+          "type": "number",
+          "label": {
+            "en": "Reset motion after",
+            "sv": "Återställ rörelse efter"
+          },
+          "units": {
+            "en": "seconds",
+            "sv": "sekunder"
+          },
+          "hint": {
+            "en": "Verisure motion detectors only report motion while the alarm is armed, as an intrusion event. Homey clears the motion alarm after this time.",
+            "sv": "Verisures rörelsedetektorer rapporterar bara rörelse när larmet är på, som en intrångshändelse. Homey återställer rörelselarmet efter denna tid."
+          },
+          "value": 60,
+          "min": 10,
+          "max": 3600
+        }
+      ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
+      "id": "motion_detector"
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/smart_lock/assets/images/small.png",
+        "large": "/drivers/smart_lock/assets/images/large.png"
+      },
+      "icon": "/drivers/smart_lock/assets/icon.svg",
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "name": {
+        "en": "Smart lock",
+        "sv": "Smart lås"
+      },
+      "class": "lock",
+      "capabilities": [
+        "locked",
+        "verisure_changed_by"
+      ],
+      "settings": [
+        {
+          "id": "code",
+          "type": "password",
+          "label": {
+            "en": "Lock code",
+            "sv": "Låskod"
+          },
+          "hint": {
+            "en": "The code used to lock and unlock from Homey (usually 4–6 digits).",
+            "sv": "Koden som används för att låsa och låsa upp från Homey (oftast 4–6 siffror)."
+          },
+          "value": ""
+        }
+      ],
+      "id": "smart_lock"
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/smart_plug/assets/images/small.png",
+        "large": "/drivers/smart_plug/assets/images/large.png"
+      },
+      "icon": "/drivers/smart_plug/assets/icon.svg",
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "name": {
+        "en": "Smart plug",
+        "sv": "Smart plugg"
+      },
+      "class": "socket",
+      "capabilities": [
+        "onoff"
+      ],
+      "id": "smart_plug"
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/smoke_detector/assets/images/small.png",
+        "large": "/drivers/smoke_detector/assets/images/large.png"
+      },
+      "icon": "/drivers/smoke_detector/assets/icon.svg",
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "name": {
+        "en": "Smoke detector",
+        "sv": "Brandvarnare"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_smoke",
+        "measure_temperature",
+        "alarm_tamper",
+        "alarm_battery"
+      ],
+      "capabilitiesOptions": {
+        "measure_temperature": {
+          "decimals": 1
+        }
+      },
+      "settings": [
+        {
+          "id": "smoke_reset",
+          "type": "number",
+          "label": {
+            "en": "Reset smoke alarm after",
+            "sv": "Återställ brandlarm efter"
+          },
+          "units": {
+            "en": "minutes",
+            "sv": "minuter"
+          },
+          "hint": {
+            "en": "Verisure reports fire as an event, not as a state, so Homey clears the smoke alarm after this time (or earlier if Verisure reports it restored). 0 = only when Verisure reports it restored.",
+            "sv": "Verisure rapporterar brand som en händelse, inte ett tillstånd, så Homey återställer brandlarmet efter denna tid (eller tidigare om Verisure rapporterar återställning). 0 = bara när Verisure rapporterar återställning."
+          },
+          "value": 10,
+          "min": 0,
+          "max": 1440
+        }
+      ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
+      "id": "smoke_detector"
+    },
+    {
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "cloud"
+      ],
+      "images": {
+        "small": "/drivers/water_detector/assets/images/small.png",
+        "large": "/drivers/water_detector/assets/images/large.png"
+      },
+      "icon": "/drivers/water_detector/assets/icon.svg",
+      "pair": [
+        {
+          "id": "login"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "login"
+        }
+      ],
+      "name": {
+        "en": "Water detector",
+        "sv": "Vattenlarm"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_water",
+        "alarm_tamper",
+        "alarm_battery"
+      ],
+      "settings": [
+        {
+          "id": "water_reset",
+          "type": "number",
+          "label": {
+            "en": "Reset water alarm after",
+            "sv": "Återställ vattenlarm efter"
+          },
+          "units": {
+            "en": "minutes",
+            "sv": "minuter"
+          },
+          "hint": {
+            "en": "Verisure reports leaks as an event, not as a state, so Homey clears the water alarm after this time (or earlier if Verisure reports it restored). 0 = only when Verisure reports it restored.",
+            "sv": "Verisure rapporterar läckage som en händelse, inte ett tillstånd, så Homey återställer vattenlarmet efter denna tid (eller tidigare om Verisure rapporterar återställning). 0 = bara när Verisure rapporterar återställning."
+          },
+          "value": 60,
+          "min": 0,
+          "max": 1440
+        }
+      ],
+      "energy": {
+        "batteries": [
+          "OTHER"
+        ]
+      },
+      "id": "water_detector"
+    }
+  ],
+  "capabilities": {
+    "broadband_online": {
+      "type": "boolean",
+      "title": {
+        "en": "Broadband online",
+        "sv": "Bredband online"
+      },
+      "desc": {
+        "en": "Whether the alarm's broadband connection is up. When it is down the alarm falls back to its mobile connection.",
+        "sv": "Om larmets bredbandsanslutning är uppe. När den är nere använder larmet mobilnätet i stället."
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Broadband came online",
+        "sv": "Bredbandet kom tillbaka"
+      },
+      "insightsTitleFalse": {
+        "en": "Broadband went offline",
+        "sv": "Bredbandet gick ner"
+      },
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/broadband.svg"
+    },
+    "verisure_arm_blockers": {
+      "type": "string",
+      "title": {
+        "en": "Blocking arming",
+        "sv": "Hindrar pålarmning"
+      },
+      "desc": {
+        "en": "Devices that prevent arming without force, e.g. an open window.",
+        "sv": "Enheter som hindrar pålarmning utan tvång, t.ex. ett öppet fönster."
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/arm-blockers.svg"
+    },
+    "verisure_arm_ready": {
+      "type": "boolean",
+      "title": {
+        "en": "Ready to arm",
+        "sv": "Redo att larma"
+      },
+      "desc": {
+        "en": "Whether the alarm can be armed without force (no open doors or windows, no faults).",
+        "sv": "Om larmet kan larmas på utan tvångslarmning (inga öppna dörrar eller fönster, inga fel)."
+      },
+      "getable": true,
+      "setable": false,
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Ready to arm",
+        "sv": "Redo att larma"
+      },
+      "insightsTitleFalse": {
+        "en": "Not ready to arm",
+        "sv": "Inte redo att larma"
+      },
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/arm-ready.svg"
+    },
+    "verisure_changed_by": {
+      "type": "string",
+      "title": {
+        "en": "Changed by",
+        "sv": "Ändrat av"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/capabilities/user.svg"
+    }
+  }
+}

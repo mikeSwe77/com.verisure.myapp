@@ -1,0 +1,4 @@
+{
+  "title": { "en": "Broadband came online", "sv": "Bredbandet kom tillbaka" },
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=alarm" } ]
+}

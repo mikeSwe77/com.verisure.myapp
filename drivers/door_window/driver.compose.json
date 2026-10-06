@@ -1,0 +1,20 @@
+{
+  "$extends": [
+    "verisure"
+  ],
+  "name": {
+    "en": "Door/window sensor",
+    "sv": "Dörr-/fönstersensor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "alarm_contact",
+    "alarm_tamper",
+    "alarm_battery"
+  ],
+  "energy": {
+    "batteries": [
+      "OTHER"
+    ]
+  }
+}

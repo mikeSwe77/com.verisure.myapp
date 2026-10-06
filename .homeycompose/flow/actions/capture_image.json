@@ -1,0 +1,5 @@
+{
+  "title": { "en": "Take a picture", "sv": "Ta en bild" },
+  "hint": { "en": "Asks the camera for a new picture. It takes a few seconds; the 'New picture' trigger runs when it arrives.", "sv": "Ber kameran ta en ny bild. Det tar några sekunder; utlösaren 'Ny bild' körs när den kommit." },
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=camera" } ]
+}

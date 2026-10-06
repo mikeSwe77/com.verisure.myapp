@@ -1,0 +1,6 @@
+{
+  "$extends": ["verisure"],
+  "name": { "en": "Smart plug", "sv": "Smart plugg" },
+  "class": "socket",
+  "capabilities": ["onoff"]
+}

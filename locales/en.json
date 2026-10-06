@@ -1,0 +1,71 @@
+{
+  "pair": {
+    "login": {
+      "title": "Sign in to Verisure",
+      "hint": "Use the e-mail and password of your Verisure account (the same as in the My Verisure app). Tip: create a separate Verisure user for Homey so its actions are easy to tell apart.",
+      "email": "E-mail",
+      "password": "Password",
+      "submit": "Sign in"
+    },
+    "mfa": {
+      "hint_phone": "Verisure sent a verification code to your phone by SMS.",
+      "hint_email": "Verisure sent a verification code to your e-mail.",
+      "code": "Verification code",
+      "submit": "Verify",
+      "resend": "Send a new code",
+      "wait": "Wait __seconds__ s before requesting another code."
+    },
+    "installation": {
+      "hint": "Choose the installation to add devices from."
+    },
+    "repair": {
+      "subtitle": "Sign in again to reconnect",
+      "done": "Signed in. Your Verisure devices will reconnect within a minute."
+    },
+    "error": {
+      "missing_credentials": "Enter both e-mail and password.",
+      "invalid_auth": "Verisure rejected the e-mail or password.",
+      "invalid_code": "That code was not accepted. Check it, or request a new one.",
+      "rate_limited": "Verisure is limiting sign-in attempts for this account. Wait a few minutes before trying again.",
+      "session_lost": "The sign-in session expired. Go back and sign in again.",
+      "no_installations": "No installations were found for this account.",
+      "installation_missing": "This installation is not available to the signed-in account."
+    }
+  },
+  "device": {
+    "missing": "Verisure no longer reports this device.",
+    "motion_detector": "Motion detector",
+    "water_detector": "Water detector"
+  },
+  "camera": {
+    "latest": "Latest picture",
+    "no_image": "No picture available yet",
+    "capture_timeout": "The camera did not deliver a picture in time."
+  },
+  "arm_ready": {
+    "violation": {
+      "DOOR_WINDOW_OPEN": "open"
+    },
+    "blocked_by": "Blocking: __devices__."
+  },
+  "settings": {
+    "title": "Verisure accounts",
+    "subtitle": "Accounts this Homey is signed in to.",
+    "none": "Not signed in to any Verisure account. Add a Verisure device to sign in.",
+    "state": "Status",
+    "state_ok": "Connected",
+    "state_reauth": "Needs sign-in",
+    "trusted": "Homey is a trusted device (skips the verification code)",
+    "yes": "Yes",
+    "no": "No",
+    "devices": "__devices__ device(s) in __installations__ installation(s)",
+    "sign_out": "Sign out",
+    "confirm": "Sign out of __email__?\n\nHomey is removed as a trusted device at Verisure and the stored password is deleted. The __devices__ device(s) of this account stop updating until you open one and choose Repair, or delete them.",
+    "done_revoked": "Signed out. Homey is no longer a trusted device and the stored login is deleted.",
+    "done": "Signed out and the stored login is deleted.",
+    "done_local": "The stored login is deleted, but Verisure could not be reached to end the session (__error__). You can remove Homey under trusted devices on My Pages.",
+    "note": "To sign in again, open any Verisure device and choose Repair. Removing all devices of an account does not sign it out — use Sign out.",
+    "signed_out_device": "Signed out of Verisure. Open the device and choose Repair to sign in again.",
+    "unknown_account": "That account is not signed in."
+  }
+}

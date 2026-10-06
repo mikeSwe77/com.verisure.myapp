@@ -1,0 +1,9 @@
+{
+  "title": { "en": "Check if the alarm can be armed", "sv": "Kontrollera om larmet kan larmas på" },
+  "hint": { "en": "Asks Verisure whether arming would go through, without arming. Returns which devices are in the way.", "sv": "Frågar Verisure om pålarmning skulle gå igenom, utan att larma. Returnerar vilka enheter som är i vägen." },
+  "tokens": [
+    { "name": "ready", "type": "boolean", "title": { "en": "Can be armed", "sv": "Kan larmas" } },
+    { "name": "blockers", "type": "string", "title": { "en": "Blocking devices", "sv": "Hindrande enheter" }, "example": { "en": "Entré (open)", "sv": "Entré (öppen)" } }
+  ],
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=alarm" } ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "com.verisure.myapp",
+  "version": "0.1.0",
+  "description": "Verisure alarm, sensors, smart plugs, locks and cameras for Homey",
+  "main": "app.js",
+  "scripts": {
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "test": "node --test \"test/**/*.test.js\"",
+    "sync-pair": "for d in drivers/*/; do cp lib/pair/login.html \"$d/pair/login.html\"; done",
+    "queries": "python3 scripts/extract-queries.py",
+    "docs": "node scripts/gen-readme.js"
+  },
+  "license": "GPL-3.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/homey": "npm:homey-apps-sdk-v3-types@^0.3.12",
+    "eslint": "^7.32.0",
+    "eslint-config-athom": "^3.1.5"
+  }
+}

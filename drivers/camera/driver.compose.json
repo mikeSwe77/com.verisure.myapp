@@ -1,0 +1,26 @@
+{
+  "$extends": ["verisure"],
+  "name": { "en": "Camera", "sv": "Kamera" },
+  "class": "camera",
+  "capabilities": ["button.capture"],
+  "capabilitiesOptions": {
+    "button.capture": {
+      "title": { "en": "Take picture", "sv": "Ta bild" }
+    }
+  },
+  "settings": [
+    {
+      "id": "image_refresh",
+      "type": "number",
+      "label": { "en": "Check for new pictures every", "sv": "Leta efter nya bilder var" },
+      "units": { "en": "minutes", "sv": "minut" },
+      "hint": {
+        "en": "How often to look for pictures taken by Verisure itself (e.g. on an alarm). Each check is one extra request. 0 = only after 'Take picture'.",
+        "sv": "Hur ofta appen letar efter bilder som Verisure själv tagit (t.ex. vid larm). Varje koll är en extra förfrågan. 0 = bara efter 'Ta bild'."
+      },
+      "value": 5,
+      "min": 0,
+      "max": 1440
+    }
+  ]
+}

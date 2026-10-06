@@ -1,0 +1,9 @@
+{
+  "title": { "en": "Fire alarm", "sv": "Brandlarm" },
+  "hint": { "en": "A smoke detector (or the siren) reported fire anywhere in the installation.", "sv": "En brandvarnare (eller sirenen) rapporterade brand någonstans i anläggningen." },
+  "tokens": [
+    { "name": "area", "type": "string", "title": { "en": "Room", "sv": "Rum" }, "example": { "en": "Kitchen", "sv": "Kök" } },
+    { "name": "device", "type": "string", "title": { "en": "Device serial", "sv": "Enhetens serienummer" }, "example": "1AB2 CD34" }
+  ],
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=alarm" } ]
+}

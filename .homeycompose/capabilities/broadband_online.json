@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": { "en": "Broadband online", "sv": "Bredband online" },
+  "desc": { "en": "Whether the alarm's broadband connection is up. When it is down the alarm falls back to its mobile connection.", "sv": "Om larmets bredbandsanslutning är uppe. När den är nere använder larmet mobilnätet i stället." },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "insightsTitleTrue": { "en": "Broadband came online", "sv": "Bredbandet kom tillbaka" },
+  "insightsTitleFalse": { "en": "Broadband went offline", "sv": "Bredbandet gick ner" },
+  "uiComponent": "sensor",
+  "icon": "/assets/capabilities/broadband.svg"
+}

@@ -1,0 +1,41 @@
+{
+  "$extends": [
+    "verisure"
+  ],
+  "name": {
+    "en": "Motion detector",
+    "sv": "Rörelsedetektor"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "alarm_motion",
+    "alarm_tamper",
+    "alarm_battery"
+  ],
+  "settings": [
+    {
+      "id": "motion_reset",
+      "type": "number",
+      "label": {
+        "en": "Reset motion after",
+        "sv": "Återställ rörelse efter"
+      },
+      "units": {
+        "en": "seconds",
+        "sv": "sekunder"
+      },
+      "hint": {
+        "en": "Verisure motion detectors only report motion while the alarm is armed, as an intrusion event. Homey clears the motion alarm after this time.",
+        "sv": "Verisures rörelsedetektorer rapporterar bara rörelse när larmet är på, som en intrångshändelse. Homey återställer rörelselarmet efter denna tid."
+      },
+      "value": 60,
+      "min": 10,
+      "max": 3600
+    }
+  ],
+  "energy": {
+    "batteries": [
+      "OTHER"
+    ]
+  }
+}

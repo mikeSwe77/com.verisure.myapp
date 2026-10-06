@@ -1,0 +1,16 @@
+{
+  "title": { "en": "Set auto-lock", "sv": "Ställ in autolås" },
+  "titleFormatted": { "en": "Turn auto-lock [[enabled]]", "sv": "Slå [[enabled]] autolås" },
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=smart_lock" },
+    {
+      "type": "dropdown",
+      "name": "enabled",
+      "title": { "en": "Auto-lock", "sv": "Autolås" },
+      "values": [
+        { "id": "on", "label": { "en": "on", "sv": "på" } },
+        { "id": "off", "label": { "en": "off", "sv": "av" } }
+      ]
+    }
+  ]
+}

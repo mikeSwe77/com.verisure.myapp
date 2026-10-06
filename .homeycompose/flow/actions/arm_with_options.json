@@ -1,0 +1,26 @@
+{
+  "title": { "en": "Arm with options", "sv": "Larma med val" },
+  "titleFormatted": { "en": "Arm [[mode]], force arm: [[force]]", "sv": "Larma [[mode]], tvångslarma: [[force]]" },
+  "hint": { "en": "Force arming arms even when a door or window is open or a sensor reports a fault.", "sv": "Tvångslarmning larmar även om en dörr eller ett fönster är öppet eller en sensor rapporterar fel." },
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=alarm" },
+    {
+      "type": "dropdown",
+      "name": "mode",
+      "title": { "en": "Mode", "sv": "Läge" },
+      "values": [
+        { "id": "away", "label": { "en": "away (fully)", "sv": "borta (helt)" } },
+        { "id": "home", "label": { "en": "home (perimeter)", "sv": "hemma (skal)" } }
+      ]
+    },
+    {
+      "type": "dropdown",
+      "name": "force",
+      "title": { "en": "Force arm", "sv": "Tvångslarma" },
+      "values": [
+        { "id": "no", "label": { "en": "no", "sv": "nej" } },
+        { "id": "yes", "label": { "en": "yes", "sv": "ja" } }
+      ]
+    }
+  ]
+}

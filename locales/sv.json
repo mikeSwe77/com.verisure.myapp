@@ -1,0 +1,71 @@
+{
+  "pair": {
+    "login": {
+      "title": "Logga in på Verisure",
+      "hint": "Använd e-post och lösenord för ditt Verisure-konto (samma som i appen My Verisure). Tips: skapa en egen Verisure-användare för Homey så att dess händelser är lätta att känna igen.",
+      "email": "E-post",
+      "password": "Lösenord",
+      "submit": "Logga in"
+    },
+    "mfa": {
+      "hint_phone": "Verisure har skickat en verifieringskod till din telefon via SMS.",
+      "hint_email": "Verisure har skickat en verifieringskod till din e-post.",
+      "code": "Verifieringskod",
+      "submit": "Verifiera",
+      "resend": "Skicka en ny kod",
+      "wait": "Vänta __seconds__ s innan du begär en ny kod."
+    },
+    "installation": {
+      "hint": "Välj vilken anläggning enheterna ska hämtas från."
+    },
+    "repair": {
+      "subtitle": "Logga in igen för att återansluta",
+      "done": "Inloggad. Dina Verisure-enheter återansluter inom en minut."
+    },
+    "error": {
+      "missing_credentials": "Ange både e-post och lösenord.",
+      "invalid_auth": "Verisure godkände inte e-postadressen eller lösenordet.",
+      "invalid_code": "Koden godkändes inte. Kontrollera den eller begär en ny.",
+      "rate_limited": "Verisure begränsar inloggningsförsök för kontot. Vänta några minuter innan du försöker igen.",
+      "session_lost": "Inloggningen har gått ut. Gå tillbaka och logga in igen.",
+      "no_installations": "Inga anläggningar hittades för kontot.",
+      "installation_missing": "Den här anläggningen är inte tillgänglig för det inloggade kontot."
+    }
+  },
+  "device": {
+    "missing": "Verisure rapporterar inte längre den här enheten.",
+    "motion_detector": "Rörelsedetektor",
+    "water_detector": "Vattenlarm"
+  },
+  "camera": {
+    "latest": "Senaste bild",
+    "no_image": "Ingen bild finns ännu",
+    "capture_timeout": "Kameran levererade ingen bild i tid."
+  },
+  "arm_ready": {
+    "violation": {
+      "DOOR_WINDOW_OPEN": "öppen"
+    },
+    "blocked_by": "Hindrar: __devices__."
+  },
+  "settings": {
+    "title": "Verisure-konton",
+    "subtitle": "Konton som denna Homey är inloggad på.",
+    "none": "Inte inloggad på något Verisure-konto. Lägg till en Verisure-enhet för att logga in.",
+    "state": "Status",
+    "state_ok": "Ansluten",
+    "state_reauth": "Kräver inloggning",
+    "trusted": "Homey är en betrodd enhet (slipper verifieringskod)",
+    "yes": "Ja",
+    "no": "Nej",
+    "devices": "__devices__ enhet(er) i __installations__ anläggning(ar)",
+    "sign_out": "Logga ut",
+    "confirm": "Logga ut från __email__?\n\nHomey tas bort som betrodd enhet hos Verisure och det sparade lösenordet raderas. Kontots __devices__ enhet(er) slutar uppdateras tills du öppnar en och väljer Reparera, eller tar bort dem.",
+    "done_revoked": "Utloggad. Homey är inte längre en betrodd enhet och den sparade inloggningen är raderad.",
+    "done": "Utloggad och den sparade inloggningen är raderad.",
+    "done_local": "Den sparade inloggningen är raderad, men Verisure kunde inte nås för att avsluta sessionen (__error__). Du kan ta bort Homey under betrodda enheter på Mina sidor.",
+    "note": "Logga in igen genom att öppna valfri Verisure-enhet och välja Reparera. Att ta bort alla enheter loggar inte ut kontot — använd Logga ut.",
+    "signed_out_device": "Utloggad från Verisure. Öppna enheten och välj Reparera för att logga in igen.",
+    "unknown_account": "Det kontot är inte inloggat."
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "title": { "en": "Intrusion alarm", "sv": "Inbrottslarm" },
+  "hint": { "en": "A sensor reported an intrusion while the alarm was armed.", "sv": "En sensor rapporterade intrång när larmet var på." },
+  "tokens": [
+    { "name": "area", "type": "string", "title": { "en": "Room", "sv": "Rum" }, "example": { "en": "Kitchen", "sv": "Kök" } },
+    { "name": "device", "type": "string", "title": { "en": "Device serial", "sv": "Enhetens serienummer" }, "example": "1AB2 CD34" }
+  ],
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=alarm" } ]
+}

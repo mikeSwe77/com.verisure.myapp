@@ -1,0 +1,9 @@
+{
+  "type": "string",
+  "title": { "en": "Blocking arming", "sv": "Hindrar pålarmning" },
+  "desc": { "en": "Devices that prevent arming without force, e.g. an open window.", "sv": "Enheter som hindrar pålarmning utan tvång, t.ex. ett öppet fönster." },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capabilities/arm-blockers.svg"
+}

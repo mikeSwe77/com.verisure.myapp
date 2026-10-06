@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
+  <style>
+    .vs-account { border: 1px solid var(--homey-line-color, #e5e5e5); border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; }
+    .vs-account h2 { font-size: 1.05em; margin: 0 0 6px; word-break: break-all; }
+    .vs-row { margin: 2px 0; opacity: 0.85; }
+    .vs-state-ok { color: var(--homey-color-green-500, #2e7d32); }
+    .vs-state-reauth { color: var(--homey-color-danger, #e53935); }
+    .vs-account button { margin-top: 10px; }
+    .vs-empty, .vs-note { opacity: 0.8; }
+  </style>
+</head>
+<body>
+  <header class="homey-header">
+    <h1 class="homey-title" data-i18n="settings.title"></h1>
+    <p class="homey-subtitle" data-i18n="settings.subtitle"></p>
+  </header>
+
+  <div id="accounts"></div>
+  <p class="vs-note" data-i18n="settings.note"></p>
+
+  <script type="text/javascript">
+    function onHomeyReady(Homey) {
+      var container = document.getElementById('accounts');
+
+      function el(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+
+      function render(accounts) {
+        container.innerHTML = '';
+        if (!accounts.length) {
+          container.appendChild(el('p', 'vs-empty', Homey.__('settings.none')));
+          return;
+        }
+        accounts.forEach(function (account) {
+          var card = el('div', 'vs-account');
+          card.appendChild(el('h2', null, account.email));
+
+          var state = el('p', 'vs-row');
+          var badge = el('span', account.state === 'ok' ? 'vs-state-ok' : 'vs-state-reauth',
+            Homey.__(account.state === 'ok' ? 'settings.state_ok' : 'settings.state_reauth'));
+          state.appendChild(document.createTextNode(Homey.__('settings.state') + ': '));
+          state.appendChild(badge);
+          card.appendChild(state);
+          if (account.state !== 'ok' && account.reason) card.appendChild(el('p', 'vs-row', account.reason));
+
+          card.appendChild(el('p', 'vs-row', Homey.__('settings.trusted') + ': '
+            + Homey.__(account.trusted ? 'settings.yes' : 'settings.no')));
+          card.appendChild(el('p', 'vs-row', Homey.__('settings.devices', {
+            devices: account.devices, installations: account.installations,
+          })));
+
+          var button = el('button', 'homey-button-danger-full', Homey.__('settings.sign_out'));
+          button.addEventListener('click', function () { signOut(account, button); });
+          card.appendChild(button);
+          container.appendChild(card);
+        });
+      }
+
+      function load() {
+        Homey.api('GET', '/accounts', null, function (err, accounts) {
+          if (err) return Homey.alert(err.message || String(err));
+          render(accounts || []);
+        });
+      }
+
+      function signOut(account, button) {
+        var question = Homey.__('settings.confirm', { email: account.email, devices: account.devices });
+        Homey.confirm(question, function (err, ok) {
+          if (err || !ok) return;
+          button.disabled = true;
+          button.classList.add('is-loading');
+          Homey.api('POST', '/accounts/sign-out', { email: account.email }, function (apiErr, result) {
+            button.disabled = false;
+            button.classList.remove('is-loading');
+            if (apiErr) return Homey.alert(apiErr.message || String(apiErr));
+            var message = result.signedOut
+              ? Homey.__(result.trustRevoked ? 'settings.done_revoked' : 'settings.done')
+              : Homey.__('settings.done_local', { error: result.error || '?' });
+            Homey.alert(message, load);
+          });
+        });
+      }
+
+      load();
+      Homey.ready();
+    }
+  </script>
+</body>
+</html>

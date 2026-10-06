@@ -1,0 +1,41 @@
+{
+  "$extends": [
+    "verisure"
+  ],
+  "name": {
+    "en": "Water detector",
+    "sv": "Vattenlarm"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "alarm_water",
+    "alarm_tamper",
+    "alarm_battery"
+  ],
+  "settings": [
+    {
+      "id": "water_reset",
+      "type": "number",
+      "label": {
+        "en": "Reset water alarm after",
+        "sv": "Återställ vattenlarm efter"
+      },
+      "units": {
+        "en": "minutes",
+        "sv": "minuter"
+      },
+      "hint": {
+        "en": "Verisure reports leaks as an event, not as a state, so Homey clears the water alarm after this time (or earlier if Verisure reports it restored). 0 = only when Verisure reports it restored.",
+        "sv": "Verisure rapporterar läckage som en händelse, inte ett tillstånd, så Homey återställer vattenlarmet efter denna tid (eller tidigare om Verisure rapporterar återställning). 0 = bara när Verisure rapporterar återställning."
+      },
+      "value": 60,
+      "min": 0,
+      "max": 1440
+    }
+  ],
+  "energy": {
+    "batteries": [
+      "OTHER"
+    ]
+  }
+}

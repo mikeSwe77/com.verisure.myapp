@@ -1,0 +1,40 @@
+{
+  "title": {
+    "en": "A device reports low battery",
+    "sv": "En enhet rapporterar låg batterinivå"
+  },
+  "hint": {
+    "en": "Any device in the installation, including ones not added to Homey such as the keypad.",
+    "sv": "Alla enheter i anläggningen, även sådana som inte lagts till i Homey, t.ex. knappsatsen."
+  },
+  "tokens": [
+    {
+      "name": "area",
+      "type": "string",
+      "title": {
+        "en": "Room",
+        "sv": "Rum"
+      },
+      "example": {
+        "en": "Hall",
+        "sv": "Hall"
+      }
+    },
+    {
+      "name": "device",
+      "type": "string",
+      "title": {
+        "en": "Device serial",
+        "sv": "Enhetens serienummer"
+      },
+      "example": "1AB2 CD34"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=alarm"
+    }
+  ]
+}

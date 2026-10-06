@@ -1,0 +1,9 @@
+{
+  "$extends": ["verisure"],
+  "name": { "en": "Climate sensor", "sv": "Klimatsensor" },
+  "class": "sensor",
+  "capabilities": ["measure_temperature"],
+  "capabilitiesOptions": {
+    "measure_temperature": { "decimals": 1 }
+  }
+}

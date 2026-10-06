@@ -1,0 +1,5 @@
+{
+  "title": { "en": "Alarm !{{can|cannot}} be armed without force", "sv": "Larmet !{{kan|kan inte}} larmas på utan tvång" },
+  "hint": { "en": "Asks Verisure whether arming would go through, without arming. False when a door or window is open or a device reports a fault.", "sv": "Frågar Verisure om pålarmning skulle gå igenom, utan att larma. Falskt när en dörr eller ett fönster är öppet eller en enhet rapporterar fel." },
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=alarm" } ]
+}

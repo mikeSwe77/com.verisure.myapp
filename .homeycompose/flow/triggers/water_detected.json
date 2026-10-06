@@ -1,0 +1,9 @@
+{
+  "title": { "en": "Water leak", "sv": "Vattenläcka" },
+  "hint": { "en": "A water detector reported a leak anywhere in the installation.", "sv": "Ett vattenlarm rapporterade läckage någonstans i anläggningen." },
+  "tokens": [
+    { "name": "area", "type": "string", "title": { "en": "Room", "sv": "Rum" }, "example": { "en": "Kitchen", "sv": "Kök" } },
+    { "name": "device", "type": "string", "title": { "en": "Device serial", "sv": "Enhetens serienummer" }, "example": "1AB2 CD34" }
+  ],
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=alarm" } ]
+}

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["es2020"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "checkJs": false,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "types": ["node", "homey"]
+  },
+  "include": ["app.js", "api.js", "lib/**/*.js", "drivers/**/*.js", "test/**/*.js", "scripts/**/*.js"],
+  "exclude": ["node_modules", ".homeybuild", ".homeycompose", "reference"]
+}

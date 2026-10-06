@@ -1,0 +1,11 @@
+{
+  "title": { "en": "Arming or disarming failed", "sv": "På- eller avlarmning misslyckades" },
+  "hint": { "en": "Runs when Homey could not change the alarm state, e.g. a wrong code or an open window.", "sv": "Körs när Homey inte kunde ändra larmläget, t.ex. fel kod eller ett öppet fönster." },
+  "tokens": [
+    { "name": "reason", "type": "string", "title": { "en": "Reason", "sv": "Orsak" }, "example": { "en": "Verisure did not confirm the change in time." } },
+    { "name": "target", "type": "string", "title": { "en": "Requested state", "sv": "Begärt läge" }, "example": "armed" }
+  ],
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=alarm" }
+  ]
+}

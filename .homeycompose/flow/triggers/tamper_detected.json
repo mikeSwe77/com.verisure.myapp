@@ -1,0 +1,40 @@
+{
+  "title": {
+    "en": "Tamper alarm",
+    "sv": "Sabotagelarm"
+  },
+  "hint": {
+    "en": "A device reported tampering (cover opened or removed) anywhere in the installation.",
+    "sv": "En enhet rapporterade sabotage (lock öppnat eller borttagen) någonstans i anläggningen."
+  },
+  "tokens": [
+    {
+      "name": "area",
+      "type": "string",
+      "title": {
+        "en": "Room",
+        "sv": "Rum"
+      },
+      "example": {
+        "en": "Hall",
+        "sv": "Hall"
+      }
+    },
+    {
+      "name": "device",
+      "type": "string",
+      "title": {
+        "en": "Device serial",
+        "sv": "Enhetens serienummer"
+      },
+      "example": "1AB2 CD34"
+    }
+  ],
+  "args": [
+    {
+      "type": "device",
+      "name": "device",
+      "filter": "driver_id=alarm"
+    }
+  ]
+}

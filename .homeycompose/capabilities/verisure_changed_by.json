@@ -1,0 +1,8 @@
+{
+  "type": "string",
+  "title": { "en": "Changed by", "sv": "Ändrat av" },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "icon": "/assets/capabilities/user.svg"
+}

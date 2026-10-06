@@ -1,0 +1,18 @@
+{
+  "$extends": ["verisure"],
+  "name": { "en": "Smart lock", "sv": "Smart lås" },
+  "class": "lock",
+  "capabilities": ["locked", "verisure_changed_by"],
+  "settings": [
+    {
+      "id": "code",
+      "type": "password",
+      "label": { "en": "Lock code", "sv": "Låskod" },
+      "hint": {
+        "en": "The code used to lock and unlock from Homey (usually 4–6 digits).",
+        "sv": "Koden som används för att låsa och låsa upp från Homey (oftast 4–6 siffror)."
+      },
+      "value": ""
+    }
+  ]
+}

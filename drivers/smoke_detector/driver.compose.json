@@ -1,0 +1,47 @@
+{
+  "$extends": [
+    "verisure"
+  ],
+  "name": {
+    "en": "Smoke detector",
+    "sv": "Brandvarnare"
+  },
+  "class": "sensor",
+  "capabilities": [
+    "alarm_smoke",
+    "measure_temperature",
+    "alarm_tamper",
+    "alarm_battery"
+  ],
+  "capabilitiesOptions": {
+    "measure_temperature": {
+      "decimals": 1
+    }
+  },
+  "settings": [
+    {
+      "id": "smoke_reset",
+      "type": "number",
+      "label": {
+        "en": "Reset smoke alarm after",
+        "sv": "Återställ brandlarm efter"
+      },
+      "units": {
+        "en": "minutes",
+        "sv": "minuter"
+      },
+      "hint": {
+        "en": "Verisure reports fire as an event, not as a state, so Homey clears the smoke alarm after this time (or earlier if Verisure reports it restored). 0 = only when Verisure reports it restored.",
+        "sv": "Verisure rapporterar brand som en händelse, inte ett tillstånd, så Homey återställer brandlarmet efter denna tid (eller tidigare om Verisure rapporterar återställning). 0 = bara när Verisure rapporterar återställning."
+      },
+      "value": 10,
+      "min": 0,
+      "max": 1440
+    }
+  ],
+  "energy": {
+    "batteries": [
+      "OTHER"
+    ]
+  }
+}

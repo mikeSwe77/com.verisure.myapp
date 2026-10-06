@@ -1,0 +1,95 @@
+{
+  "$extends": [
+    "verisure"
+  ],
+  "name": {
+    "en": "Alarm",
+    "sv": "Larm"
+  },
+  "class": "homealarm",
+  "capabilities": [
+    "homealarm_state",
+    "verisure_changed_by",
+    "verisure_arm_ready",
+    "verisure_arm_blockers",
+    "broadband_online"
+  ],
+  "settings": [
+    {
+      "type": "group",
+      "label": {
+        "en": "Arming",
+        "sv": "Larma"
+      },
+      "children": [
+        {
+          "id": "code",
+          "type": "password",
+          "label": {
+            "en": "Alarm code",
+            "sv": "Larmkod"
+          },
+          "hint": {
+            "en": "Your personal Verisure code, used to arm and disarm from Homey. Verisure logs every change under the user this code belongs to. Repeated wrong codes temporarily lock the account.",
+            "sv": "Din personliga Verisure-kod som används för att larma på och av från Homey. Verisure loggar varje ändring på den användare koden tillhör. Upprepade felaktiga koder spärrar kontot tillfälligt."
+          },
+          "value": ""
+        },
+        {
+          "id": "force_arm",
+          "type": "checkbox",
+          "label": {
+            "en": "Force arm",
+            "sv": "Tvångslarma"
+          },
+          "hint": {
+            "en": "Arm even if a door or window is open or a sensor reports a fault. Without this, arming fails in that situation.",
+            "sv": "Larma även om en dörr eller ett fönster är öppet eller en sensor rapporterar fel. Utan detta misslyckas pålarmningen i det läget."
+          },
+          "value": false
+        },
+        {
+          "id": "arm_check",
+          "type": "checkbox",
+          "label": {
+            "en": "Check if the alarm can be armed",
+            "sv": "Kontrollera om larmet kan larmas på"
+          },
+          "hint": {
+            "en": "Shows 'Ready to arm' and what is blocking it. Checks after door/window activity and every 30 minutes while disarmed (about 3 requests per check).",
+            "sv": "Visar 'Redo att larma' och vad som hindrar. Kontrollerar efter dörr-/fönsteraktivitet och var 30:e minut när larmet är av (cirka 3 förfrågningar per kontroll)."
+          },
+          "value": true
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "label": {
+        "en": "Updates",
+        "sv": "Uppdateringar"
+      },
+      "children": [
+        {
+          "id": "poll_interval",
+          "type": "number",
+          "label": {
+            "en": "Update interval",
+            "sv": "Uppdateringsintervall"
+          },
+          "units": {
+            "en": "seconds",
+            "sv": "sekunder"
+          },
+          "hint": {
+            "en": "How often all devices of this installation are refreshed (one request per update). Verisure blocks accounts that poll too often; 60 s is what Home Assistant uses.",
+            "sv": "Hur ofta alla enheter i anläggningen uppdateras (en förfrågan per uppdatering). Verisure spärrar konton som frågar för ofta; 60 s är vad Home Assistant använder."
+          },
+          "value": 60,
+          "min": 30,
+          "max": 3600
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+# Homey CLI
+/env.json
+/.homeybuild/
+
+# Dependencies
+/node_modules/
+
+# Secrets and local sessions — never commit
+/.env
+*.env
+.verisure-session.json
+.upstream-cookie
+
+# Local upstream snapshots (recreate per AGENTS.md)
+/reference/
+
+# Tooling / OS
+.claude/
+.vscode/
+.idea/
+*.log
+.DS_Store

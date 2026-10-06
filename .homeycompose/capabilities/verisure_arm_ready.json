@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": { "en": "Ready to arm", "sv": "Redo att larma" },
+  "desc": { "en": "Whether the alarm can be armed without force (no open doors or windows, no faults).", "sv": "Om larmet kan larmas på utan tvångslarmning (inga öppna dörrar eller fönster, inga fel)." },
+  "getable": true,
+  "setable": false,
+  "insights": true,
+  "insightsTitleTrue": { "en": "Ready to arm", "sv": "Redo att larma" },
+  "insightsTitleFalse": { "en": "Not ready to arm", "sv": "Inte redo att larma" },
+  "uiComponent": "sensor",
+  "icon": "/assets/capabilities/arm-ready.svg"
+}

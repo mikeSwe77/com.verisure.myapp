@@ -1,0 +1,4 @@
+{
+  "title": { "en": "Broadband !{{is|is not}} online", "sv": "Bredbandet !{{är|är inte}} online" },
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=alarm" } ]
+}

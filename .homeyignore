@@ -1,0 +1,18 @@
+# What NOT to upload to Homey / the App Store. The Homey CLI reads only this file plus its
+# defaults (dotfiles, .homeybuild, tsconfig.json, env.json, *.compose.json, node_modules) —
+# it does NOT read .gitignore, so anything secret must be listed here explicitly.
+
+# Secrets and local sessions (also dotfiles, but never rely on that)
+.verisure-session.json
+.upstream-cookie
+*.env
+
+# Development only
+/reference/
+/test/
+/scripts/
+/lib/pair/
+AGENTS.md
+README.md
+*.log
+.DS_Store

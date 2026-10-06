@@ -1,0 +1,167 @@
+<!--
+  Shared pairing/repair view. Source of truth: lib/pair/login.html.
+  Copied into every drivers/<id>/pair/ by `npm run sync-pair` — edit the source, not the copies.
+-->
+<style>
+  .vs-step { display: none; }
+  .vs-step.is-active { display: block; }
+  .vs-hint { margin: 0.5em 0 1em; opacity: 0.8; }
+  .vs-error { color: var(--homey-color-danger, #e53935); margin-top: 0.75em; min-height: 1.2em; }
+  .vs-installation { margin-bottom: 0.5em; width: 100%; text-align: left; }
+  .vs-installation small { display: block; opacity: 0.7; }
+  .vs-link { background: none; border: 0; padding: 0; color: var(--homey-color-blue-500, #0076ff); cursor: pointer; margin-top: 1em; }
+</style>
+
+<div id="step-credentials" class="vs-step is-active">
+  <p class="vs-hint" data-i18n="pair.login.hint"></p>
+  <form class="homey-form" id="form-credentials">
+    <div class="homey-form-group">
+      <label class="homey-form-label" for="email" data-i18n="pair.login.email"></label>
+      <input class="homey-form-input" id="email" type="email" autocomplete="username" required />
+    </div>
+    <div class="homey-form-group">
+      <label class="homey-form-label" for="password" data-i18n="pair.login.password"></label>
+      <input class="homey-form-input" id="password" type="password" autocomplete="current-password" required />
+    </div>
+    <button class="homey-button-primary-full" id="btn-login" type="submit" data-i18n="pair.login.submit"></button>
+  </form>
+</div>
+
+<div id="step-mfa" class="vs-step">
+  <p class="vs-hint" id="mfa-hint"></p>
+  <form class="homey-form" id="form-mfa">
+    <div class="homey-form-group">
+      <label class="homey-form-label" for="code" data-i18n="pair.mfa.code"></label>
+      <input class="homey-form-input" id="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="8" required />
+    </div>
+    <button class="homey-button-primary-full" id="btn-mfa" type="submit" data-i18n="pair.mfa.submit"></button>
+  </form>
+  <button class="vs-link" id="btn-resend" type="button" data-i18n="pair.mfa.resend"></button>
+</div>
+
+<div id="step-installation" class="vs-step">
+  <p class="vs-hint" data-i18n="pair.installation.hint"></p>
+  <div id="installation-list"></div>
+</div>
+
+<div class="vs-error" id="error"></div>
+
+<script type="application/javascript">
+  (function () {
+    var repair = false;
+    var lastResend = 0;
+
+    function $(id) { return document.getElementById(id); }
+
+    function showStep(name) {
+      ['credentials', 'mfa', 'installation'].forEach(function (step) {
+        $('step-' + step).classList.toggle('is-active', step === name);
+      });
+      $('error').textContent = '';
+    }
+
+    function fail(err) {
+      Homey.hideLoadingOverlay();
+      $('error').textContent = (err && err.message) || String(err);
+    }
+
+    function busy(button, on) {
+      button.disabled = on;
+      button.classList.toggle('is-loading', on);
+    }
+
+    function selectInstallation(giid) {
+      Homey.showLoadingOverlay();
+      Homey.emit('select_installation', { giid: giid })
+        .then(function () {
+          Homey.hideLoadingOverlay();
+          if (repair) {
+            Homey.alert(Homey.__('pair.repair.done'), 'info').then(function () { Homey.done(); });
+          } else {
+            Homey.showView('list_devices');
+          }
+        })
+        .catch(fail);
+    }
+
+    function onLoggedIn(result) {
+      var list = result.installations || [];
+      if (list.length === 0) return fail(new Error(Homey.__('pair.error.no_installations')));
+      if (list.length === 1) return selectInstallation(list[0].giid);
+
+      var container = $('installation-list');
+      container.innerHTML = '';
+      list.forEach(function (installation) {
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'homey-button-secondary-full vs-installation';
+        button.textContent = installation.name;
+        if (installation.address) {
+          var small = document.createElement('small');
+          small.textContent = installation.address;
+          button.appendChild(small);
+        }
+        button.addEventListener('click', function () { selectInstallation(installation.giid); });
+        container.appendChild(button);
+      });
+      showStep('installation');
+    }
+
+    function onLoginResult(result) {
+      if (result.status === 'mfa') {
+        $('mfa-hint').textContent = Homey.__(result.channel === 'email' ? 'pair.mfa.hint_email' : 'pair.mfa.hint_phone');
+        lastResend = Date.now();
+        showStep('mfa');
+        $('code').focus();
+        return;
+      }
+      onLoggedIn(result);
+    }
+
+    $('form-credentials').addEventListener('submit', function (event) {
+      event.preventDefault();
+      var button = $('btn-login');
+      busy(button, true);
+      $('error').textContent = '';
+      Homey.emit('login', { email: $('email').value, password: $('password').value })
+        .then(function (result) { busy(button, false); onLoginResult(result); })
+        .catch(function (err) { busy(button, false); fail(err); });
+    });
+
+    $('form-mfa').addEventListener('submit', function (event) {
+      event.preventDefault();
+      var button = $('btn-mfa');
+      busy(button, true);
+      $('error').textContent = '';
+      Homey.emit('mfa', { code: $('code').value })
+        .then(function (result) { busy(button, false); onLoggedIn(result); })
+        .catch(function (err) { busy(button, false); fail(err); });
+    });
+
+    // Each code request counts towards Verisure's step-up limit (ACC_00002), so resending
+    // is throttled to once every 60 s.
+    $('btn-resend').addEventListener('click', function () {
+      var wait = Math.ceil((60000 - (Date.now() - lastResend)) / 1000);
+      if (wait > 0) {
+        $('error').textContent = Homey.__('pair.mfa.wait', { seconds: wait });
+        return;
+      }
+      lastResend = Date.now();
+      Homey.emit('resend_mfa', {})
+        .then(function (result) {
+          $('mfa-hint').textContent = Homey.__(result.channel === 'email' ? 'pair.mfa.hint_email' : 'pair.mfa.hint_phone');
+        })
+        .catch(fail);
+    });
+
+    Homey.setTitle(Homey.__('pair.login.title'));
+    Homey.emit('init', {}).then(function (info) {
+      repair = info.repair;
+      $('email').value = info.email || '';
+      if (repair) {
+        $('email').readOnly = true;
+        Homey.setSubtitle(Homey.__('pair.repair.subtitle'));
+      }
+    });
+  }());
+</script>

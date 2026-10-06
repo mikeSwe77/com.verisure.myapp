@@ -1,0 +1,5 @@
+{
+  "title": { "en": "Update now", "sv": "Uppdatera nu" },
+  "hint": { "en": "Fetches the latest state of every device in this installation. Each update counts towards Verisure's request limit.", "sv": "Hämtar senaste läget för alla enheter i anläggningen. Varje uppdatering räknas mot Verisures gräns för förfrågningar." },
+  "args": [ { "type": "device", "name": "device", "filter": "driver_id=alarm" } ]
+}

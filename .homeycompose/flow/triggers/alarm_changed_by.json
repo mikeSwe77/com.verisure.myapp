@@ -1,0 +1,12 @@
+{
+  "title": { "en": "Alarm state was changed", "sv": "Larmläget ändrades" },
+  "hint": { "en": "Includes who changed it and how (app, keypad, tag, Homey…).", "sv": "Innehåller vem som ändrade det och hur (app, knappsats, tagg, Homey…)." },
+  "tokens": [
+    { "name": "state", "type": "string", "title": { "en": "State", "sv": "Läge" }, "example": "armed" },
+    { "name": "user", "type": "string", "title": { "en": "Changed by", "sv": "Ändrat av" }, "example": "Anna" },
+    { "name": "via", "type": "string", "title": { "en": "Changed via", "sv": "Ändrat via" }, "example": "CODE" }
+  ],
+  "args": [
+    { "type": "device", "name": "device", "filter": "driver_id=alarm" }
+  ]
+}
