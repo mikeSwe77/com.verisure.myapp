@@ -11,8 +11,8 @@
     "sv": "Verisure"
   },
   "description": {
-    "en": "Control your Verisure alarm and see its sensors in Homey",
-    "sv": "Styr ditt Verisure-larm och se dess sensorer i Homey"
+    "en": "Your alarm, part of every Flow",
+    "sv": "Ditt larm i varje Flow"
   },
   "brandColor": "#E2001A",
   "category": [
@@ -43,6 +43,17 @@
   "author": {
     "name": "Michael Edholm",
     "email": "michael_edholm@hotmail.com"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Michael Edholm",
+        "email": "michael_edholm@hotmail.com"
+      },
+      {
+        "name": "Per Sandström (python-verisure, the Verisure API client this app is ported from)"
+      }
+    ]
   },
   "support": "https://community.homey.app/",
   "api": {

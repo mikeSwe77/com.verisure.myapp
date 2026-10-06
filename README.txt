@@ -1,7 +1,3 @@
-Control your Verisure alarm from Homey and use its sensors in your Flows.
+Make your Verisure alarm part of your smart home. Arm the alarm automatically when everyone has left, but only after Homey has checked that every door and window is shut, and get told exactly which one is still open. Disarm when you come home, see who changed the alarm, and let a smoke alarm, water leak or break-in turn on the lights, close the water valve or send everyone a notification.
 
-Arm and disarm (also with force arm), see who changed the alarm, and check whether the alarm can be armed before you leave. Door/window sensors, smoke detectors, water detectors, motion detectors, climate sensors, smart plugs, smart locks and cameras are supported, with triggers for smoke, water leaks, intrusion, tampering and low batteries.
-
-Works with two-factor sign-in: enter the verification code once and Homey stays signed in. All devices share one update per minute, so Verisure does not block your account.
-
-This app is not made by or affiliated with Verisure.
+Sign in once with your Verisure account, including the verification code if you use two-step login, and Homey stays connected on its own. All your Verisure devices share a single gentle update per minute, so Verisure has no reason to block your account for asking too often. This app is made by the Homey community and is not affiliated with Verisure.
