@@ -74,9 +74,19 @@ async function main() {
   if (args.has('--logout')) {
     if (!stored) return console.log('No saved session.');
     const session = new VerisureSession({ ...stored, username: stored.email, log });
-    await session.logout().catch((err) => console.log('Logout call failed:', err.message));
+    // Same sign-out as the app's settings page: re-establish the (likely expired) session with
+    // the trust cookie first — the DELETE calls are rejected without a live session.
+    const outcome = await VerisureAccount.signOutSession(session);
     fs.rmSync(SESSION_FILE, { force: true });
-    return console.log('Trust revoked and session file deleted.');
+    if (!outcome.signedOut) {
+      console.log(`Session file deleted, but Verisure did not confirm the sign-out (${outcome.error}).`);
+      console.log('Remove this trusted device manually in My Verisure.');
+      process.exitCode = 1;
+      return undefined;
+    }
+    return console.log(outcome.trustRevoked
+      ? 'Signed out at Verisure, trusted device revoked, session file deleted.'
+      : 'Signed out at Verisure and session file deleted (no trust token was stored to revoke).');
   }
 
   let account;
