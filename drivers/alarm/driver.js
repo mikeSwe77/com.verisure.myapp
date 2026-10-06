@@ -22,6 +22,16 @@ class AlarmDriver extends VerisureDriver {
         await device.setArmState(mode === 'home' ? 'ARMED_HOME' : 'ARMED_AWAY', { forceArm: force === 'yes' });
       });
 
+    this.homey.flow.getActionCard('set_alarm_with_code')
+      .registerRunListener(async ({
+        device, mode, code, force,
+      }) => {
+        const digits = String(code || '').trim();
+        if (!/^\d{4,8}$/.test(digits)) throw new Error(this.homey.__('arm_code.invalid'));
+        const target = { away: 'ARMED_AWAY', home: 'ARMED_HOME', disarm: 'DISARMED' }[mode];
+        await device.setArmState(target, { code: digits, forceArm: force === 'yes' && mode !== 'disarm' });
+      });
+
     this.homey.flow.getActionCard('refresh_now')
       .registerRunListener(async ({ device }) => {
         await device.hub.refresh();

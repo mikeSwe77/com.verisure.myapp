@@ -67,5 +67,8 @@
     "note": "To sign in again, open any Verisure device and choose Repair. Removing all devices of an account does not sign it out — use Sign out.",
     "signed_out_device": "Signed out of Verisure. Open the device and choose Repair to sign in again.",
     "unknown_account": "That account is not signed in."
+  },
+  "arm_code": {
+    "invalid": "Enter the Verisure code as 4–8 digits."
   }
 }

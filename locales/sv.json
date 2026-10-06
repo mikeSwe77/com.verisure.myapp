@@ -67,5 +67,8 @@
     "note": "Logga in igen genom att öppna valfri Verisure-enhet och välja Reparera. Att ta bort alla enheter loggar inte ut kontot — använd Logga ut.",
     "signed_out_device": "Utloggad från Verisure. Öppna enheten och välj Reparera för att logga in igen.",
     "unknown_account": "Det kontot är inte inloggat."
+  },
+  "arm_code": {
+    "invalid": "Ange Verisure-koden som 4–8 siffror."
   }
 }

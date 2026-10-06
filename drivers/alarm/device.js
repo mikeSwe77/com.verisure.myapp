@@ -127,10 +127,14 @@ class AlarmDevice extends VerisureDevice {
     this._clearReadinessTimer();
   }
 
-  /** Arms or disarms with the code from settings; fires "arming failed" on error. */
-  async setArmState(target, { forceArm = false } = {}) {
+  /**
+   * Arms or disarms; fires "arming failed" on error. Uses the code from the device settings
+   * unless one is given (the "Set the alarm with a code" card) — Verisure then logs the change
+   * under the user that code belongs to.
+   */
+  async setArmState(target, { forceArm = false, code = null } = {}) {
     try {
-      await this.hub.setArmState(target, this.getSetting('code'), { forceArm });
+      await this.hub.setArmState(target, code || this.getSetting('code'), { forceArm });
       const state = FROM_VERISURE[target];
       if (state) await this.updateCapability('homealarm_state', state);
     } catch (err) {

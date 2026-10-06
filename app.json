@@ -56,6 +56,11 @@
       "path": "/accounts/sign-out"
     }
   },
+  "source": "https://github.com/mikeSwe77/com.verisure.myapp",
+  "homepage": "https://github.com/mikeSwe77/com.verisure.myapp#readme",
+  "bugs": {
+    "url": "https://github.com/mikeSwe77/com.verisure.myapp/issues"
+  },
   "flow": {
     "triggers": [
       {
@@ -583,6 +588,95 @@
           }
         ],
         "id": "refresh_now"
+      },
+      {
+        "title": {
+          "en": "Set the alarm with a code",
+          "sv": "Ändra larmet med en kod"
+        },
+        "titleFormatted": {
+          "en": "[[mode]] with code [[code]], force arm: [[force]]",
+          "sv": "[[mode]] med kod [[code]], tvångslarma: [[force]]"
+        },
+        "hint": {
+          "en": "Uses this code instead of the one in the alarm's settings, so Verisure logs the change under the person the code belongs to. Anyone who can edit this flow can see the code. Force arm only applies when arming.",
+          "sv": "Använder denna kod i stället för den i larmets inställningar, så Verisure loggar ändringen på den person koden tillhör. Alla som kan redigera flödet kan se koden. Tvångslarmning gäller bara vid pålarmning."
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=alarm"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Action",
+              "sv": "Åtgärd"
+            },
+            "values": [
+              {
+                "id": "away",
+                "label": {
+                  "en": "Arm away",
+                  "sv": "Larma borta"
+                }
+              },
+              {
+                "id": "home",
+                "label": {
+                  "en": "Arm home",
+                  "sv": "Larma hemma"
+                }
+              },
+              {
+                "id": "disarm",
+                "label": {
+                  "en": "Disarm",
+                  "sv": "Larma av"
+                }
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "code",
+            "title": {
+              "en": "Code",
+              "sv": "Kod"
+            },
+            "placeholder": {
+              "en": "1234",
+              "sv": "1234"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "force",
+            "title": {
+              "en": "Force arm",
+              "sv": "Tvångslarma"
+            },
+            "values": [
+              {
+                "id": "no",
+                "label": {
+                  "en": "no",
+                  "sv": "nej"
+                }
+              },
+              {
+                "id": "yes",
+                "label": {
+                  "en": "yes",
+                  "sv": "ja"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "set_alarm_with_code"
       },
       {
         "title": {
